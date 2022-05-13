@@ -4,8 +4,9 @@ import Select from "react-select";
 
 export const CustomSelect = styled(Select).attrs({
     styles: {
-        control: (provided) =>({
+        control: (provided) => ({
             ...provided,
+            cursor: "pointer",
             backgroundColor: "var(--colors-ui-base)",
             color: "var(--colors-text)",
             borderRadius: "var(--radius)",
@@ -28,7 +29,7 @@ export const CustomSelect = styled(Select).attrs({
     border: none;
 
     & > * {
-        box-shadow: var(--shadow);
+        box-shadow: var(--shadow); 
     }
 
     & input {
@@ -37,7 +38,7 @@ export const CustomSelect = styled(Select).attrs({
 
     & * {
         color: var(--colors-text) !important;
-        cursor: pointer;
+        //cursor: pointer;
     }
 
     & > div[id] {

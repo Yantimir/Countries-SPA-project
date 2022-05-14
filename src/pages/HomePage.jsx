@@ -10,12 +10,9 @@ import { ALL_COUNTRIES } from "../config";
 
 export const HomePage = ({ countries, setCountries }) => {
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
     const [filteredCountries, setFilteredCountries] = useState(countries);
 
     const { push } = useHistory();
-    // const navigate = useNavigate();
 
     const handleSearch = (search, region) => {
         let data = [...countries];
@@ -31,16 +28,15 @@ export const HomePage = ({ countries, setCountries }) => {
     }
 
     useEffect(() => {
-        setIsLoading(true);
-        if (!countries.length) {
-            axios.get(ALL_COUNTRIES).then(({ data }) => {
-                setCountries(data);
-                setFilteredCountries(data);
-            })
-                .catch(() => setIsError(true))
-                .finally(() => setIsLoading(false))
-        }
+        if (!countries.length)
+            axios.get(ALL_COUNTRIES).then(({ data }) => { setCountries(data) })
+        // eslint-disable-next-line
     }, [])
+
+    useEffect(() => {
+        handleSearch();
+        // eslint-disable-next-line
+    }, [countries])
 
     return (
         <>
@@ -70,7 +66,6 @@ export const HomePage = ({ countries, setCountries }) => {
                         <Card
                             key={country.name}
                             onClick={() => push(`/country/${country.name}`)}
-                            // onClick={() => navigate(`/country/${country.name}`)}
                             {...countryInfo}
                         />
                     );

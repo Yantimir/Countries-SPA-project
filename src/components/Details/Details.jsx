@@ -1,4 +1,8 @@
+import axios from "axios";
+import { useState, useEffect } from 'react'
 import styled from "styled-components";
+import { filterByCode } from "../../config";
+
 
 const Wrapper = styled.section`
     margin-top: 3rem;
@@ -25,32 +29,69 @@ const DetailsImage = styled.img`
 `;
 
 const DetailsTitle = styled.h1`
-
+    margin: 0;
+    font-weight: var(--fw-normal);
 `;
 
 const DetailsGroup = styled.div`
+    display: flex;
+    flex-direction: column;
 
+    gap: 2rem;
+
+    @media(min-width: 1024px){
+        flex-direction: row;
+        gap: 4rem;
+    }
 `;
 
 const DetailsBody = styled.ul`
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
 `;
 
 const DetailsItem = styled.li`
+    line-height: 1.8;
 
+    & > b {
+        font-weight: var(--fw-bold);
+    }
 `;
 
 const Meta = styled.div`
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
 
+    & > b {
+        font-weight: var(--fw-bold);
+    }
+
+    @media(min-width: 767px){
+        flex-direction: row;
+        align-items: center;
+    }
 `;
 
 const TagGroup = styled.div`
-
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 `;
 
 const Tag = styled.span`
-
+    padding: 0 1rem;
+    background-color: var(--colors-ui-base);
+    box-shadow: var(--shadow);
+    line-height: 1.5;
+    cursor: pointer;
 `;
+
+
 
 export const Details = (props) => {
 
@@ -66,8 +107,16 @@ export const Details = (props) => {
         currencies = [],
         languares = [],
         borders = [],
-        // push
+        push
     } = props;
+
+    const [naighbors, setNeighbors] = useState([]);
+
+    useEffect(() => {
+        if (borders.length)
+            axios.get(filterByCode(borders))
+                .then(({ data }) => setNeighbors(data.map(country => country.name)))
+    }, [borders]);
 
     return (
         <Wrapper>
@@ -115,7 +164,9 @@ export const Details = (props) => {
                     {!borders.length ? (
                         <span>There is no border countries</span>
                     ) : (<TagGroup>
-                        {borders.map(border => <Tag key={border}>{border}</Tag>)}
+                        {naighbors.map((border) => (
+                            <Tag key={border} onClick={() => push(`/country/${border}`)}>{border}</Tag>
+                        ))}
                     </TagGroup>
                     )}
                 </Meta>

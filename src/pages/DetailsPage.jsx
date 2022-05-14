@@ -9,9 +9,7 @@ import { Details } from "../components/Details/Details";
 export const DetailsPage = () => {
 
     const { name } = useParams();
-    const { 
-        // push, 
-        goBack } = useHistory();
+    const { push, goBack } = useHistory();
     const [country, setCountry] = useState(null);
 
     useEffect(() => {
@@ -26,9 +24,8 @@ export const DetailsPage = () => {
                 <IoArrowBack /> Back
             </Button>
             {country && (
-                <Details {...country} />
+                <Details push={push} {...country} />
             )}
-            {/* Details {name} */}
         </div>
     );
 }

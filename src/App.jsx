@@ -22,14 +22,6 @@ function App() {
                             setCountries={setCountries}
                         />
                     </Route>
-                    {/* <Route path="/" element={
-                        <HomePage
-                            countries={countries}
-                            setCountries={setCountries}
-                        />
-                    } />  */}
-                    {/* <Route path="/country/:name" element={<DetailsPage/>} />
-                    <Route element={<NotFoundPage/>} /> */}
                     <Route path="/country/:name" component={DetailsPage} />
                     <Route component={NotFoundPage} />
                 </Switch>

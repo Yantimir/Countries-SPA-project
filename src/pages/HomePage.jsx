@@ -10,7 +10,8 @@ import { ALL_COUNTRIES } from "../config";
 
 export const HomePage = ({ countries, setCountries }) => {
 
-    // const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
     const [filteredCountries, setFilteredCountries] = useState(countries);
 
     const { push } = useHistory();
@@ -30,18 +31,16 @@ export const HomePage = ({ countries, setCountries }) => {
     }
 
     useEffect(() => {
-        // setIsLoading(true);
+        setIsLoading(true);
         if (!countries.length) {
             axios.get(ALL_COUNTRIES).then(({ data }) => {
                 setCountries(data);
                 setFilteredCountries(data);
             })
-            // .catch((err) => console.log(err))
-            // .finally(() => {
-            //     setIsLoading(false);
-            // });
+                .catch(() => setIsError(true))
+                .finally(() => setIsLoading(false))
         }
-    }, []);
+    }, [])
 
     return (
         <>

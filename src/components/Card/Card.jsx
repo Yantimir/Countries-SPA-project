@@ -15,6 +15,16 @@ const CardImage = styled.img`
     object-fit: cover;
     object-positon: center;
     box-shadow: var(--shadow);
+
+    @media(min-width: 480px){
+        height: 250px;
+    }
+    @media(min-width: 767px){
+        height: 200px;
+    }
+    @media(min-width: 1024px){
+        height: 150px;
+    }
 `;
 
 const CardBody = styled.div`

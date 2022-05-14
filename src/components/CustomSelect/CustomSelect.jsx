@@ -6,7 +6,6 @@ export const CustomSelect = styled(Select).attrs({
     styles: {
         control: (provided) => ({
             ...provided,
-            cursor: "pointer",
             backgroundColor: "var(--colors-ui-base)",
             color: "var(--colors-text)",
             borderRadius: "var(--radius)",

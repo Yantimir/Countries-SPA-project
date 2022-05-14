@@ -23,7 +23,7 @@ const Input = styled.input.attrs({
     type: "search",
     placeholder: "Search for a country..."
 })`
-    //margin-left: 2rem;
+    margin-left: 0.5rem;
     border: none;
     outline: none;
     color: var(--colors-text);
@@ -33,7 +33,9 @@ const Input = styled.input.attrs({
 export const Search = ({ search, setSearch }) => {
     return (
         <InputContainer>
-            <IoSearch />
+            <div>
+                <IoSearch />
+            </div>
             <Input onChange={(e) => setSearch(e.target.value)} value={search} />
         </InputContainer>
     );

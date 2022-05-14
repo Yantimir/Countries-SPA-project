@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { CustomSelect } from "../CustomSelect/CustomSelect";
 import { Search } from "../Search/Search";
 
 const options = [
-    { value: "Africa", label: "" },
+    { value: "Africa", label: "Africa" },
     { value: "America", label: "America" },
     { value: "Asia", label: "Asia" },
     { value: "Europe", label: "Europe" },
@@ -23,10 +23,17 @@ const Wrapper = styled.div`
     }
 `;
 
-export const Controls = () => {
+export const Controls = ({ onSearch }) => {
 
     const [search, setSearch] = useState("");
     const [region, setRegion] = useState("");
+
+    useEffect(()=>{
+        const regionValue = region?.value || "";
+        onSearch(search, regionValue);
+        
+        // eslint-disable-next-line
+    }, [search, region]);
 
     return (
         <Wrapper>

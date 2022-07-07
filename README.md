@@ -4,3 +4,4 @@
 
 > ### демо проект SPA приложения на React с выбором темы (светлой или темной), с REST API запросами (использована библиотека AXIOS), поиском и фильтрацией. Помимо React и react-router-dom использовна библиотека styled-components.
 
+![Screenshot](screenshot.jpg)
